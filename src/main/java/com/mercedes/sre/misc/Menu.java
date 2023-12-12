@@ -21,8 +21,8 @@ public class Menu {
 
     Command command;
 
-    //@Autowired
-    //Communication communication;
+    @Autowired
+    Communication communication;
 
     @Autowired
     WebsiteConfiguration websiteConfiguration;
@@ -39,7 +39,7 @@ public class Menu {
 
     @Bean
     @Async
-    @DependsOn({"websiteConfiguration"})
+    @DependsOn({"communication","websiteConfiguration"})
     public void displayMenu() {
 
         System.out.println("\n (1) Fetch \n (2) Live \n (3) History \n (4) Backup");
@@ -54,7 +54,7 @@ public class Menu {
                     //case "2":
                     //    command = new Live();
                 }
-                command.execute( websiteConfiguration);
+                command.execute(communication, websiteConfiguration);
             }
             else {
                 System.out.println("No choice available, try again...");

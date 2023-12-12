@@ -18,22 +18,7 @@ public class Fetch implements  Command{
 
 
     @Override
-  public void execute( WebsiteConfiguration websiteConfiguration) {
-
-        ExecutorService es = Executors.newFixedThreadPool(8);
-        Communication communication = new Communication();
-
-        for (final String ws : websiteConfiguration.getListWebsites()) {
-            es.submit(new Runnable() {
-                @Override
-                public void run() {
-                    String status = communication.makeRestCall(ws);
-                    System.out.println("->->status: " + status);
-                }
-            });
-        }
-
-        es.shutdown();
+  public void execute( Communication communication, WebsiteConfiguration websiteConfiguration) {
 
       Map<String, String> statusCodeMap = websiteConfiguration.getListWebsites()
               .stream()

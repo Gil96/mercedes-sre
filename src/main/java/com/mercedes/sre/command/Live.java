@@ -7,7 +7,7 @@ import com.mercedes.sre.misc.WebsiteConfiguration;
 public class Live implements Command {
 
     @Override
-    public void execute( WebsiteConfiguration websiteConfiguration) {
+    public void execute(Communication communication, WebsiteConfiguration websiteConfiguration) {
 
 //
 

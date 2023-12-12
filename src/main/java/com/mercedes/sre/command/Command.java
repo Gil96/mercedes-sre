@@ -11,6 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 public interface Command {
 
-    public void execute( WebsiteConfiguration websiteConfiguration);
+    public void execute(Communication communication, WebsiteConfiguration websiteConfiguration);
 
 }

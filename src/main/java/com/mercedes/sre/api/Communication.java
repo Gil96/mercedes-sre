@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Service
 public class Communication extends Thread{
 
     private final RestTemplate restTemplate;
@@ -20,7 +21,6 @@ public class Communication extends Thread{
     }
 
 
-    @Async
     public String makeRestCall(String url) {
 
         HttpStatusCode statusCode;
@@ -34,7 +34,6 @@ public class Communication extends Thread{
             //Unexpected
             return "Unknown";
         }
-        log.info(String.valueOf(Thread.currentThread()));
         return statusCode.toString();
     }
 }
