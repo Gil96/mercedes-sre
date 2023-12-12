@@ -1,3 +1,7 @@
 https://www.google.com/
-https://dog.ceo/api/breeds/image/random
 https://www.google.com/404
+https://reqres.in/
+https://httpbin.org/
+https://quora.com
+https://httpstat.us/404
+https://httpstat.us/random/200,201,500-504
