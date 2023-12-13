@@ -31,8 +31,6 @@ public class Restore implements Command {
         simpleModule.addKeyDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
         objectMapper.registerModule(simpleModule);
 
-        //TypeReference<Map<String, Map<LocalDateTime, String>>> typeRef = new TypeReference<Map<String, Map<LocalDateTime, String>>>() {};
-
         try {
             Map<String, Map<LocalDateTime, String>> stringMapMap = objectMapper.readValue(new File(pathRestore), Datastore.class).getDataMap();
             datastore.setDataMap(stringMapMap);
