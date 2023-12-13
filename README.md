@@ -1,10 +1,8 @@
-#Mercedes SRE - Website Scanner
+# Mercedes SRE - Website Scanner
 
-###Welcome
+### Welcome
  
 This is a Website scanner project that is able to retrieve HTTP status code information about a list of websites/services.
-
-
 
 
 ### Interaction
@@ -17,7 +15,7 @@ This is a Website scanner project that is able to retrieve HTTP status code info
 >(2) Live   
 >(3) History  
 >(4) Backup  
->(...)...   
+>(5) Restore   
 > Pick the number of the command you desire to run.  
 > Each command represent a different feature of the project and can be complemented with extra arguments, more info below...
 
@@ -53,7 +51,7 @@ This is a Website scanner project that is able to retrieve HTTP status code info
   - >live.time.duration (default value is 20 seconds)
 - HISTORY
   - display the url used and respective data fetched.
-     The Data includes group of records with HTTP Status Code and the respective moment it was captured
+     The Data includes group of records with HTTP Status Code and the respective moment it was captured.
 
 
 - BACKUP

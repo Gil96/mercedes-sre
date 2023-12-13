@@ -32,16 +32,6 @@ class CommandUtilsTest {
     @InjectMocks
     private CommandUtils testee;
 
-    List<String> websiteList;
-
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void scanUrlStatus() {
