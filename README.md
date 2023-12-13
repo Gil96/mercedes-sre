@@ -37,7 +37,7 @@ This is a Website scanner project that is able to retrieve HTTP status code info
 ```2 n``` Live command with output disabled  
 ```4 y``` Backup  command
 
-###Notes on specific Commands
+### Notes on specific Commands
 
 - FETCH
 
