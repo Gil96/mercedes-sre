@@ -10,8 +10,9 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mercedes.sre.storage.Datastore;
+import com.mercedes.sre.utils.CommandUtils;
 @Service
-public class Backup implements Command{
+public class Backup implements Command {
 
     @Autowired
     Datastore datastore;
@@ -30,6 +31,6 @@ public class Backup implements Command{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Backup finished");
+        CommandUtils.printCompleteMsg(getClass());
     }
 }
