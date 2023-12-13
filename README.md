@@ -33,9 +33,15 @@ This is a Website scanner project that is able to retrieve HTTP status code info
 
 *Examples*:
 
-`````1 y googl````` Fetch command with output enabled to any "google" websites   
-```2 n``` Live command with output disabled  
-```4 y``` Backup  command
+`````1 n ````` Fetch command with output disabled and fetch all websites from the list  
+`````1 y ````` Fetch command with output enabled and fetch all websites from the list  
+`````1 y googl````` Fetch command with output enabled to any "google" websites     
+```2 n``` Live command with output disabled   
+```2 y``` Live command printing information gathered in each iteration from all websites   
+```2 y quora``` Live command printing information gathered in each iteration only for "quora" services  
+```3 y``` History command - printing the whole datastore  
+```4 y``` Backup  command  
+```5 y``` Restore command
 
 ### Notes on specific Commands
 
