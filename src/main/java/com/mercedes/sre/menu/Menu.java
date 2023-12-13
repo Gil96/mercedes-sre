@@ -1,4 +1,4 @@
-package com.mercedes.sre.misc;
+package com.mercedes.sre.menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +87,7 @@ public class Menu {
         System.out.println("\n*1 Argument: \n (1) Fetch \n (2) Live \n (3) History \n (4) Backup \n - REQUIRED");
         System.out.println("\n*2 Argument: \n (y) Yes, Enable Optional Switch \n (n) No, Disable Optional Switch \n - REQUIRED");
         System.out.println("\n*3 Argument: \n (abcdef) Type a word to only process the urls that match \n - Not Required");
-        System.out.println("\n*Examples*: \n > 1 y google \n > 2 n\"");
+        System.out.println("\n*Examples*: \n > 1 y google \n > 2 n \n");
         System.out.println("\n************************************\n");
     }
 

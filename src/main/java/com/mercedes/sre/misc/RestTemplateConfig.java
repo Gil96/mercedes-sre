@@ -1,4 +1,4 @@
-package com.mercedes.sre.api;
+package com.mercedes.sre.misc;
 
 import java.time.Duration;
 import org.springframework.beans.factory.annotation.Value;
