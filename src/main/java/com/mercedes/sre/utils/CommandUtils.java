@@ -22,7 +22,6 @@ public class CommandUtils {
                 .stream()
                 .forEach((e) ->
                 {
-                    Map.Entry<LocalDateTime, String> entry = Map.entry(LocalDateTime.now(), e.getValue());
                     datastore.getDataMap().putIfAbsent(e.getKey(), new HashMap<>());
                     datastore.getDataMap().get(e.getKey()).put(LocalDateTime.now(), e.getValue());
                 });
