@@ -1,6 +1,7 @@
 package com.mercedes.sre.command;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -28,6 +29,9 @@ public class Live implements Command {
     @Value("${live.pooling.interval}")
     Integer poolingInterval;
 
+    @Value("${live.time.duration}")
+    Integer timeDuration;
+
     @Override
     public void execute(String optional, String subset) {
 
@@ -40,16 +44,17 @@ public class Live implements Command {
         // Schedule a stop after 1 minute
         scheduler.schedule(() -> {
             scheduler.shutdown();
-            System.out.println("Task scheduler stopped after 1 minute.");
-        }, 20, TimeUnit.SECONDS);
+            System.out.println("Live task stopped after " + timeDuration.toString() + " seconds" );
+        }, timeDuration, TimeUnit.SECONDS);
     }
 
     private void liveExecution(String optional, String subset) {
 
-        saveDatastore(scanUrlStatus(subset));
+        Map<String, String> urlStatus = scanUrlStatus(subset);
         if (optional.equals("y")) {
-            datastore.getDataMap().forEach((key, value) -> System.out.println(">>>>" + key + " # " + value.getKey() + " # " + value.getValue()));
+            urlStatus.entrySet().stream().forEach(entry -> System.out.println(">>>>" + entry.getKey() + " # " + entry.getValue() + " # " + LocalDateTime.now()));
         }
+        saveDatastore(urlStatus);
     }
 
     private Map<String, String> scanUrlStatus(String subset) {
@@ -62,6 +67,11 @@ public class Live implements Command {
     private void saveDatastore(Map<String, String> statusCodeMap) {
         statusCodeMap.entrySet()
                 .stream()
-                .forEach((e) -> datastore.getDataMap().put(e.getKey(), Map.entry(LocalDateTime.now(), e.getValue())));
+                .forEach((e) ->
+                {
+                    Map.Entry<LocalDateTime, String> entry = Map.entry(LocalDateTime.now(), e.getValue());
+                    datastore.getDataMap().putIfAbsent(e.getKey(), new HashMap<>());
+                    datastore.getDataMap().get(e.getKey()).put(LocalDateTime.now(), e.getValue());
+                });
     }
 }

@@ -11,8 +11,8 @@ n*1 Argument:
 >(y) Yes, Enable Optional Switch  
 >(n) No, Disable Optional Switch  
 > Command Required  
-> Choose to enable or disable the optional Switch that can have different meanings depending on the command used
-
+> Choose to enable or disable the optional Switch that can have different meanings depending on the command used  
+> Main purpose is to display info about the data that is processed at that moment
 
 *3 Argument:
 > (abcdef) Type a word to only process the urls that match this same word  
@@ -27,6 +27,18 @@ n*1 Argument:
 > 2 n
 
 
+*Notes on specific Commands*
+
+- FETCH
+
+
+- LIVE
 
 You can configure the pooling interval for Live command on application.properties under:
 >live.pooling.interval (default value is 5 seconds)
+
+- HISTORY
+    display the url used and respective data fetched.
+    The Data includes group of records with HTTP Status Code and the respective moment it was captured
+
+

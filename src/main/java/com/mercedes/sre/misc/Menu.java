@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import com.mercedes.sre.command.Command;
 import com.mercedes.sre.command.Fetch;
+import com.mercedes.sre.command.History;
 import com.mercedes.sre.command.Live;
 
 @Component
@@ -22,8 +23,8 @@ public class Menu {
     Map<String, Command> commands;
 
     @Autowired
-    public Menu(Fetch fetch, Live live) {
-        commands = Map.of("1", fetch, "2", live);
+    public Menu(Fetch fetch, Live live, History history) {
+        commands = Map.of("1", fetch, "2", live, "3", history);
     }
 
     private List<String> validateAndTokenize(String line) {

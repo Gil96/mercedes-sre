@@ -1,10 +1,10 @@
 package com.mercedes.sre.command;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import com.mercedes.sre.api.Communication;
 import com.mercedes.sre.misc.WebsiteConfiguration;
@@ -33,7 +33,7 @@ public class Fetch implements  Command{
 
         saveDatastore(statusCodeMap);
       if (optional.equals("y")){
-        datastore.getDataMap().forEach((key, value) -> System.out.println(">>>>" + key + " # " + value.getKey() +" # "+value.getValue()));
+        datastore.getDataMap().forEach((key, value) -> System.out.println(">>>>" + key + " # " + value.entrySet()));
       }
 
   }
@@ -41,6 +41,11 @@ public class Fetch implements  Command{
     private void saveDatastore(Map<String, String> statusCodeMap) {
         statusCodeMap.entrySet()
                 .stream()
-                .forEach((e) -> datastore.getDataMap().put(e.getKey(), Map.entry(LocalDateTime.now(), e.getValue())));
+                .forEach((e) ->
+                {
+                    Map.Entry<LocalDateTime, String> entry = Map.entry(LocalDateTime.now(), e.getValue());
+                    datastore.getDataMap().putIfAbsent(e.getKey(), new HashMap<>());
+                    datastore.getDataMap().get(e.getKey()).put(LocalDateTime.now(), e.getValue());
+                });
     }
 }
