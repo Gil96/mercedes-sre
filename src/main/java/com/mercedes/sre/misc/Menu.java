@@ -1,7 +1,6 @@
 package com.mercedes.sre.misc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -22,6 +21,10 @@ public class Menu {
 
     Map<String, Command> commands;
 
+    @Autowired
+    public Menu(Fetch fetch, Live live) {
+        commands = Map.of("1", fetch, "2", live);
+    }
 
     private List<String> validateAndTokenize(String line) {
 
@@ -44,10 +47,9 @@ public class Menu {
                 }
             }
             if (commandTokenPredicate.test(commandToken)
-                    && optionTokenPredicate.test(optionToken)){
+                    && optionTokenPredicate.test(optionToken)) {
                 return tokensList;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,29 +57,23 @@ public class Menu {
         return null;
     }
 
-    @Autowired
-    public Menu(Fetch fetch, Live live) {
-        commands = Map.of("1", fetch, "2", live);
-    }
-
     @Bean
     @Async
-    @DependsOn({"communication","websiteConfiguration"})
+    @DependsOn({"communication", "websiteConfiguration"})
     public void mainMenu() {
 
         printWelcomeMessages();
 
         Scanner sc = new Scanner(System.in);
-        while(sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             String line = sc.nextLine();
 
-           List<String> tokens = validateAndTokenize(line);
-           if (tokens != null) {
-                commands.get(tokens.get(0)).execute(tokens.get(1), tokens.size()==3 ? tokens.get(2) : "");
-           }
-           else {
-               printTryAgainMessage();
-           }
+            List<String> tokens = validateAndTokenize(line);
+            if (tokens != null) {
+                commands.get(tokens.get(0)).execute(tokens.get(1), tokens.size() == 3 ? tokens.get(2) : "");
+            } else {
+                printTryAgainMessage();
+            }
         }
         sc.close();
     }
@@ -85,10 +81,10 @@ public class Menu {
     private void printWelcomeMessages() {
         System.out.println("\n************************************");
         System.out.println("\n WELCOME - MERCEDES SRE");
-        System.out.println("\n*1 Argument: \n (1) Fetch \n (2) Live \n (3) History \n (4) Backup \n - Required");
-        System.out.println("\n*2 Argument: \n (y) Yes, Enable Optional Switch \n (n) No, Disable Optional Switch \n - Required");
+        System.out.println("\n*1 Argument: \n (1) Fetch \n (2) Live \n (3) History \n (4) Backup \n - REQUIRED");
+        System.out.println("\n*2 Argument: \n (y) Yes, Enable Optional Switch \n (n) No, Disable Optional Switch \n - REQUIRED");
         System.out.println("\n*3 Argument: \n (abcdef) Type a word to only process the urls that match \n - Not Required");
-        System.out.println("\n*Examples*: \n > fetch y google \n > live n\"");
+        System.out.println("\n*Examples*: \n > 1 y google \n > 2 n\"");
         System.out.println("\n************************************\n");
     }
 
